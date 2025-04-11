@@ -220,25 +220,12 @@ ap_become_the_crisis = {
 		}
 		modifier = {
 			factor = 0
-			galaxy_percentage < 0.1
-		}
-		modifier = {
-			factor = 2
-			galaxy_percentage > 0.2
-		}
-		modifier = {
-			factor = 0
-			count_playable_country = {
-				count > 1
-				limit = {
-					has_ascension_perk = ap_become_the_crisis
-				}
-			}
-		}
-		modifier = {
-			factor = 0
 			blocks_disruptive_gameplay = yes
 		}
+		modifier = {
+        	factor = 0
+        	is_subject = yes  # Блокировка выбора перка для ИИ-вассалов
+    	}
 	}
 }
 
@@ -287,16 +274,13 @@ ap_cosmogenesis = {
 	}
 
 	ai_weight = {
-		factor = 7.5
+		factor = 1
 		modifier = {
 			factor = 0
-			OR = {
-				is_egalitarian = yes
-				is_xenophile = yes
-			}
+			is_subject = yes  # Блокировка выбора перка для ИИ-вассалов
 		}
 		modifier = {
-			factor = 2
+			factor = 20000
 			has_tradition = tr_discovery_finish
 		}
 		modifier = {
@@ -307,29 +291,16 @@ ap_cosmogenesis = {
 			factor = 2
 			has_ascension_perk = ap_enigmatic_engineering
 		}
-		modifier = {
-			factor = 2
-			vassals > 0
-			any_subject = {
-				any_agreement = {
-					has_active_specialization = specialist_scholarium
-				}
-			}
-		}
-		modifier = {
-			factor = 10
-			has_country_flag = whisperers_covenant_confirmed
-		}
-		modifier = {
-			factor = 0
-			galaxy_percentage < 0.1
-		}
-		modifier = {
-			factor = 2
-			galaxy_percentage > 0.2
-		}
+		        # Ограничение: перк выбирается только после получения "Галактического проецирования сил"
+        modifier = {
+            factor = 0
+            NOT = {
+                has_ascension_perk = ap_galactic_force_projection
+            }
+        }
 	}
 }
+
 
 #################
 # AQUATICS ASCENSION PERKS
